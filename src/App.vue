@@ -22,7 +22,10 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Squada+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap");
+
 #app {
   font-family: "Titillium Web", sans-serif;
   -webkit-font-smoothing: antialiased;
