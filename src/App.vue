@@ -23,8 +23,21 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Squada+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap");
+@font-face {
+  font-family: "Squada One";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Squada One"),
+    url("./fonts/Squada_one_normal_400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Titillium Web";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Titillium Web"),
+    url("./fonts/Titillium_web_normal_300.ttf") format("truetype");
+}
 
 #app {
   font-family: "Titillium Web", sans-serif;
