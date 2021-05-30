@@ -3,7 +3,15 @@
   <div id="navbar_contents">
     <div id="nav">
       <div>
-        <router-link to="/about">About</router-link>
+        <router-link to="/collage">Collage</router-link><br />
+        <router-link to="/fineart">Fine Art</router-link><br />
+        <router-link to="/prints">Prints</router-link><br />
+        <router-link to="/digital">Digital</router-link><br />
+        <router-link to="/analogue">Analogue</router-link><br />
+        <hr />
+        <hr />
+        <router-link to="/about">About</router-link><br />
+        <router-link to="/shop">Shop</router-link>
       </div>
     </div>
     <div>
@@ -50,6 +58,7 @@ export default {
 #nav {
   text-align: left;
   padding: 30px;
+  background-color: #82CED9;
 
   a {
     font-weight: bold;
