@@ -1,25 +1,21 @@
 <template>
   <title-bar />
-  <div id="navbar_contents">
-    <div id="nav">
-      <div>
-        <router-link to="/about">About {{ var1 }}</router-link>
-      </div>
-    </div>
-    <div>
-      <router-view />
-    </div>
+  <div id="contents">
+    <navbar />
+    <router-view />
   </div>
 </template>
 
 <script>
 import TitleBar from "@/components/TitleBar.vue";
+import Navbar from "@/components/Navbar.vue";
 import { mapActions } from "vuex";
 import { mapState } from "vuex";
 
 export default {
   components: {
     TitleBar,
+    Navbar,
   },
   mounted() {
     this.load_database();
@@ -58,21 +54,12 @@ export default {
   color: #2c3e50;
 }
 
-#nav {
-  text-align: left;
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+#contents {
+  display: flex;
 }
 
-#navbar_contents {
-  display: flex;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 </style>
