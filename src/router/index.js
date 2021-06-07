@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "@/views/Home.vue";
+import About from "@/views/About.vue";
+import CategoryGallery from "@/views/CategoryGallery.vue";
 
 const routes = [
   {
@@ -13,10 +15,57 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: About,
     meta: {
       title: "Weird Food Studio - About",
+    },
+  },
+  {
+    path: "/collage",
+    name: "Collage",
+    component: CategoryGallery,
+    meta: {
+      title: "Weird Food Studio - Collage",
+    },
+  },
+  {
+    path: "/fine-art",
+    name: "Fine Art",
+    component: CategoryGallery,
+    meta: {
+      title: "Weird Food Studio - Fine Art",
+    },
+  },
+  {
+    path: "/prints",
+    name: "Prints",
+    component: CategoryGallery,
+    meta: {
+      title: "Weird Food Studio - Prints",
+    },
+  },
+  {
+    path: "/digital",
+    name: "Digital",
+    component: CategoryGallery,
+    meta: {
+      title: "Weird Food Studio - Digital",
+    },
+  },
+  {
+    path: "/analogue",
+    name: "Analogue",
+    component: CategoryGallery,
+    meta: {
+      title: "Weird Food Studio - Analogue",
+    },
+  },
+  {
+    path: "/shop",
+    name: "Shop",
+    component: CategoryGallery,
+    meta: {
+      title: "Weird Food Studio - Shop",
     },
   },
 ];

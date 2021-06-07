@@ -1,8 +1,8 @@
 <template>
   <title-bar />
-  <div id="contents">
+  <div id="content">
     <navbar />
-    <router-view />
+    <router-view class="main_content" />
   </div>
 </template>
 
@@ -10,7 +10,6 @@
 import TitleBar from "@/components/TitleBar.vue";
 import Navbar from "@/components/Navbar.vue";
 import { mapActions } from "vuex";
-import { mapState } from "vuex";
 
 export default {
   components: {
@@ -22,9 +21,6 @@ export default {
   },
   methods: {
     ...mapActions(["load_database"]),
-  },
-  computed: {
-    ...mapState(["var1"]),
   },
 };
 </script>
@@ -54,8 +50,12 @@ export default {
   color: #2c3e50;
 }
 
-#contents {
+#content {
   display: flex;
+}
+
+.main_content {
+  flex-basis: 90%;
 }
 
 a {

@@ -2,7 +2,7 @@
   <div id="nav">
     <div>
       <router-link to="/collage">Collage</router-link><br />
-      <router-link to="/fineart">Fine Art</router-link><br />
+      <router-link to="/fine-art">Fine Art</router-link><br />
       <router-link to="/prints">Prints</router-link><br />
       <router-link to="/digital">Digital</router-link><br />
       <router-link to="/analogue">Analogue</router-link><br />
@@ -19,7 +19,7 @@
   text-align: left;
   padding: 30px;
   background-color: #82ced9;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 a.router-link-exact-active {
   font-weight: bold;

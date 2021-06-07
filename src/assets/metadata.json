@@ -16,7 +16,7 @@
             "description": "Nice leaves bruh"
         }
     ],
-    "fine_art": [
+    "fine-art": [
         {
             "file": "rose-bush.jpg",
             "name": "Rose Bush",
@@ -58,8 +58,48 @@
             "file": "snap.jpg",
             "name": "Sugar snap peas",
             "description": "Stir fry"
+        },
+        {
+            "file": "hops.jpg",
+            "name": "Hops",
+            "description": "For the beer"
+        },
+        {
+            "file": "scotch.jpg",
+            "name": "Scotch bonnet",
+            "description": "The best peppers"
+        },
+        {
+            "file": "strawberry.jpg",
+            "name": "Strawberries",
+            "description": "Some strawberries"
+        },
+        {
+            "file": "cucumber.jpg",
+            "name": "Cucumbers",
+            "description": "Nice leaves bruh"
+        },
+        {
+            "file": "gladiolus.jpg",
+            "name": "Gladiolus flowers",
+            "description": "Big long pretty ones"
+        },
+        {
+            "file": "snap.jpg",
+            "name": "Sugar snap peas",
+            "description": "Stir fry"
+        },
+       {
+            "file": "gladiolus.jpg",
+            "name": "Gladiolus flowers",
+            "description": "Big long pretty ones"
+        },
+        {
+            "file": "snap.jpg",
+            "name": "Sugar snap peas",
+            "description": "Stir fry"
         }
-    ],
+     ],
     "digital": [
         {
             "file": "snap.jpg",
@@ -67,5 +107,6 @@
             "description": "Stir fry"
         }
     ],
-    "analogue": []
+    "analogue": [],
+    "shop": []
 }

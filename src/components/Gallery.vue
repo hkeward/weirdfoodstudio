@@ -42,7 +42,6 @@ export default {
 #gallery {
   display: flex;
   flex-direction: column;
-  width: 70%;
 }
 img {
   object-fit: cover;
