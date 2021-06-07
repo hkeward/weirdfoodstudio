@@ -4,11 +4,10 @@
       <router-link to="/">
         <div id="title_text">Weird Food Studio</div>
       </router-link>
-      <div>
+      <router-link to="/about">
         <div id="artist">Jessi Wood</div>
-      </div>
+      </router-link>
     </div>
-    <div></div>
   </div>
 </template>
 
@@ -16,9 +15,6 @@
 #title_bar {
   font-family: "Squada One", cursive;
   display: flex;
-}
-#text_display a {
-  text-decoration: none;
 }
 #title_text {
   font-size: 6em;
