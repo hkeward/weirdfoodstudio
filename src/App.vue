@@ -3,7 +3,7 @@
   <div id="navbar_contents">
     <div id="nav">
       <div>
-        <router-link to="/about">About</router-link>
+        <router-link to="/about">About {{ var1 }}</router-link>
       </div>
     </div>
     <div>
@@ -14,10 +14,21 @@
 
 <script>
 import TitleBar from "@/components/TitleBar.vue";
+import { mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   components: {
     TitleBar,
+  },
+  mounted() {
+    this.load_database();
+  },
+  methods: {
+    ...mapActions(["load_database"]),
+  },
+  computed: {
+    ...mapState(["var1"]),
   },
 };
 </script>
