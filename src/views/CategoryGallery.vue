@@ -78,7 +78,6 @@ export default {
       window.addEventListener("resize", this.onResize);
     });
   },
-
   beforeUnmount() {
     window.removeEventListener("resize", this.onResize);
   },
@@ -105,7 +104,7 @@ export default {
 }
 .gallery_column {
   box-sizing: border-box;
-  padding: 0 5px 0 0;
+  padding: 0 20px 0 0;
 }
 
 /* TODO I broke this by putting styles directly on the items */

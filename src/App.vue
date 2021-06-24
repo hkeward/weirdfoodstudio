@@ -11,40 +11,27 @@
 <script>
 import TitleBar from "@/components/TitleBar.vue";
 import Navbar from "@/components/Navbar.vue";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
     TitleBar,
     Navbar,
   },
-  data() {
-    return {
-      navWidth: 0,
-    };
-  },
   computed: {
+    ...mapState(["nav_width"]),
     bodyMarginStyle() {
       return {
-        "padding-left": this.navWidth + 20 + "px",
+        "padding-left": this.nav_width + 80 + "px",
       };
     },
   },
   mounted() {
     this.load_database();
-    this.getWindowWidth();
-    this.$nextTick(() => {
-      window.addEventListener("resize", this.getWindowWidth);
-    });
-  },
-  beforeUnmount() {
-    window.removeEventListener("resize", this.getWindowWidth);
+    this.get_set_nav_width();
   },
   methods: {
-    ...mapActions(["load_database"]),
-    getWindowWidth() {
-      this.navWidth = document.getElementById("nav").clientWidth;
-    },
+    ...mapActions(["load_database", "get_set_nav_width"]),
   },
 };
 </script>
@@ -82,6 +69,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex-basis: 70%;
+  transition: padding-left 0.5s;
 }
 
 @media screen and (max-width: 1200px) {
