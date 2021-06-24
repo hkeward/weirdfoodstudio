@@ -1,8 +1,10 @@
 <template>
-  <title-bar />
-  <div id="content">
+  <div id="main">
     <navbar />
-    <router-view class="main_content" />
+    <div id="content" v-bind:style="bodyMarginStyle">
+      <title-bar />
+      <router-view class="main_content" />
+    </div>
   </div>
 </template>
 
@@ -16,11 +18,33 @@ export default {
     TitleBar,
     Navbar,
   },
+  data() {
+    return {
+      navWidth: 0,
+    };
+  },
+  computed: {
+    bodyMarginStyle() {
+      return {
+        "padding-left": this.navWidth + 20 + "px"
+      };
+    },
+  },
   mounted() {
     this.load_database();
+    this.getWindowWidth();
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.getWindowWidth);
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.getWindowWidth);
   },
   methods: {
     ...mapActions(["load_database"]),
+    getWindowWidth() {
+      this.navWidth = document.getElementById("nav").clientWidth;
+    },
   },
 };
 </script>
@@ -50,16 +74,18 @@ export default {
   color: #2c3e50;
 }
 
-#content {
+#main {
   display: flex;
 }
 
-.main_content {
+#content {
+  display: flex;
+  flex-direction: column;
   flex-basis: 70%;
 }
 
 @media screen and (max-width: 1200px) {
-  .main_content {
+  #content {
     flex-basis: 90%;
   }
 }

@@ -22,6 +22,11 @@
 
 <style scoped>
 #nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
   text-align: left;
   padding: 30px;
   background-color: #82ced9;
