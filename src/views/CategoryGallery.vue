@@ -8,12 +8,8 @@
     >
       <img
         v-for="img_obj in metadata[category].slice(
-          column_index - 1 + (column_index - 1) * num_img_per_column,
-          column_index -
-            1 +
-            num_img_per_column +
-            (column_index - 1) * num_img_per_column +
-            1
+          (column_index - 1) * num_img_per_column,
+          num_img_per_column * column_index
         )"
         v-bind:key="img_obj.file"
         v-bind:src="getImgUrl(img_obj)"
@@ -41,9 +37,7 @@ export default {
       return this.metadata[this.category].length;
     },
     num_columns() {
-      if (this.num_images <= 3) {
-        return 1;
-      } else if (this.num_images <= 6) {
+      if (this.num_images <= 6) {
         return 2;
       } else {
         return 4;
@@ -71,7 +65,7 @@ export default {
       };
     },
     num_img_per_column() {
-      var num_columns = Math.floor(this.num_images / this.num_columns);
+      var num_columns = Math.ceil(this.num_images / this.num_columns);
       if (num_columns > 0) {
         return num_columns;
       } else {
@@ -111,7 +105,7 @@ export default {
 }
 .gallery_column {
   box-sizing: border-box;
-  padding: 0 5px;
+  padding: 0 5px 0 0;
 }
 
 /* TODO I broke this by putting styles directly on the items */

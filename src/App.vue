@@ -55,7 +55,13 @@ export default {
 }
 
 .main_content {
-  flex-basis: 90%;
+  flex-basis: 70%;
+}
+
+@media screen and (max-width: 1200px) {
+  .main_content {
+    flex-basis: 90%;
+  }
 }
 
 a {

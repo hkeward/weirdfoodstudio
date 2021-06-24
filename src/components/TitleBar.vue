@@ -4,9 +4,10 @@
       <router-link to="/">
         <div id="title_text">Weird Food Studio</div>
       </router-link>
-      <router-link to="/about">
+      <!--       <router-link to="/about">
         <div id="artist">Jessi Wood</div>
       </router-link>
+ -->
     </div>
   </div>
 </template>
@@ -17,7 +18,7 @@
   display: flex;
 }
 #title_text {
-  font-size: 6em;
+  font-size: 10em;
   text-align: left;
   color: #2c3e50;
   text-decoration: none;
