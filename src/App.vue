@@ -26,7 +26,7 @@ export default {
   computed: {
     bodyMarginStyle() {
       return {
-        "padding-left": this.navWidth + 20 + "px"
+        "padding-left": this.navWidth + 20 + "px",
       };
     },
   },
