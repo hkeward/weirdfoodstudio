@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div v-else id="nav" class="icon_button">
+    <div v-else id="nav">
       <div id="nav_open_close" @click="toggle_menu" class="icon_button">
         <font-awesome-icon icon="hamburger"></font-awesome-icon>
       </div>

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import CategoryGallery from "@/views/CategoryGallery.vue";
+import DetailView from "@/views/DetailView.vue";
 
 const routes = [
   {
@@ -66,6 +67,14 @@ const routes = [
     component: CategoryGallery,
     meta: {
       title: "Weird Food Studio - Shop",
+    },
+  },
+  {
+    path: "/:category/:id",
+    name: "Detail",
+    component: DetailView,
+    meta: {
+      title: "Weird Food Studio",
     },
   },
 ];

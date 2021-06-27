@@ -6,17 +6,29 @@
       v-bind:key="categories.indexOf(category)"
     >
       <div class="latest_image">
-        <img
+        <router-link
+          class="img_link"
           v-if="metadata[category].length > 0"
-          v-bind:src="getImgUrl(metadata[category][0])"
-        />
+          v-bind:to="{
+            name: 'Detail',
+            params: { id: metadata[category][0].id, category: category },
+          }"
+        >
+          <img v-bind:src="getImgUrl(metadata[category][0])" />
+        </router-link>
       </div>
       <div class="recent_images">
-        <img
+        <router-link
+          class="img_link"
           v-for="img_obj in metadata[category].slice(1, 4)"
           v-bind:key="img_obj.file"
-          v-bind:src="getImgUrl(img_obj)"
-        />
+          v-bind:to="{
+            name: 'Detail',
+            params: { id: img_obj.id, category: category },
+          }"
+        >
+          <img v-bind:src="getImgUrl(img_obj)" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -46,7 +58,11 @@ export default {
 img {
   object-fit: cover;
   width: 100%;
+  height: 100%;
   border-radius: 7px;
+}
+.img_link {
+  flex-basis: 100%;
 }
 .category_gallery {
   display: flex;
@@ -65,13 +81,13 @@ img {
   display: flex;
   flex-wrap: wrap;
 }
-.recent_images img:first-child {
+.recent_images a:first-child {
   margin-bottom: 5px;
 }
-.recent_images img:nth-child(2) {
+.recent_images a:nth-child(2) {
   margin-bottom: 5px;
 }
-.recent_images img:last-child {
+.recent_images a:last-child {
   margin-bottom: 0px;
 }
 @media screen and (max-width: 990px) {

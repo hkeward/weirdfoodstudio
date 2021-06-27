@@ -6,14 +6,19 @@
       v-bind:key="column_index"
       v-bind:style="flexStyle"
     >
-      <img
+      <router-link
         v-for="img_obj in metadata[category].slice(
           (column_index - 1) * num_img_per_column,
           num_img_per_column * column_index
         )"
         v-bind:key="img_obj.file"
-        v-bind:src="getImgUrl(img_obj)"
-      />
+        v-bind:to="{
+          name: 'Detail',
+          params: { id: img_obj.id, category: category },
+        }"
+      >
+        <img v-bind:src="getImgUrl(img_obj)" />
+      </router-link>
     </div>
   </div>
 </template>
