@@ -82,4 +82,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.icon_button:hover {
+  cursor: pointer;
+}
 </style>

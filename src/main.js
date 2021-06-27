@@ -4,9 +4,14 @@ import router from "./router";
 import store from "./store";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faHamburger, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHamburger,
+  faTimesCircle,
+  faArrowCircleRight,
+  faArrowCircleLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHamburger, faTimesCircle);
+library.add(faHamburger, faTimesCircle, faArrowCircleRight, faArrowCircleLeft);
 
 createApp(App)
   .use(store)

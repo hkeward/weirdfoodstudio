@@ -91,8 +91,4 @@ a {
 a.router-link-exact-active {
   color: #001d91;
 }
-
-.icon_button:hover {
-  cursor: pointer;
-}
 </style>
