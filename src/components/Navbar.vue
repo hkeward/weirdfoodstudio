@@ -6,19 +6,39 @@
       </div>
       <div id="links-wrapper" class="links">
         <div id="links-top" class="links">
-          <router-link to="/collage" @click="scrollToTop">Collage</router-link>
-          <router-link to="/fine-art" @click="scrollToTop"
+          <router-link
+            to="/collage"
+            @click="scrollToTop"
+            :class="{ 'is-active': subIsActive('/collage') }"
+            >Collage</router-link
+          >
+          <router-link
+            to="/fine-art"
+            @click="scrollToTop"
+            :class="{ 'is-active': subIsActive('/fine-art') }"
             >Fine Art</router-link
           >
-          <router-link to="/prints" @click="scrollToTop">Prints</router-link>
-          <router-link to="/digital" @click="scrollToTop">Digital</router-link>
-          <router-link to="/analogue" @click="scrollToTop"
+          <router-link
+            to="/prints"
+            @click="scrollToTop"
+            :class="{ 'is-active': subIsActive('/prints') }"
+            >Prints</router-link
+          >
+          <router-link
+            to="/digital"
+            @click="scrollToTop"
+            :class="{ 'is-active': subIsActive('/digital') }"
+            >Digital</router-link
+          >
+          <router-link
+            to="/analogue"
+            @click="scrollToTop"
+            :class="{ 'is-active': subIsActive('/analogue') }"
             >Analogue</router-link
           >
         </div>
         <div id="links-bottom" class="links">
           <router-link to="/about" @click="scrollToTop">About Me</router-link>
-          <router-link to="/shop" @click="scrollToTop">Shop</router-link>
           <router-link to="/" @click="scrollToTop">Home</router-link>
         </div>
       </div>
@@ -43,6 +63,13 @@ export default {
     ...mapActions(["get_set_nav_width", "toggle_menu"]),
     scrollToTop() {
       window.scrollTo(0, 0);
+    },
+    subIsActive(input) {
+      const paths = Array.isArray(input) ? input : [input];
+
+      return paths.some((path) => {
+        return this.$route.path.indexOf(path) === 0; // current path starts with this path string
+      });
     },
   },
 };
@@ -88,7 +115,8 @@ a {
   text-align: center;
 }
 
-a.router-link-exact-active {
+a.router-link-exact-active,
+.is-active {
   color: #001d91;
 }
 </style>

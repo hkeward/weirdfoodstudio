@@ -62,14 +62,6 @@ const routes = [
     },
   },
   {
-    path: "/shop",
-    name: "Shop",
-    component: CategoryGallery,
-    meta: {
-      title: "Weird Food Studio - Shop",
-    },
-  },
-  {
     path: "/:category/:id",
     name: "Detail",
     component: DetailView,

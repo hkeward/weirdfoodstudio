@@ -10,8 +10,15 @@ import {
   faArrowCircleRight,
   faArrowCircleLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
-library.add(faHamburger, faTimesCircle, faArrowCircleRight, faArrowCircleLeft);
+library.add(
+  faHamburger,
+  faTimesCircle,
+  faArrowCircleRight,
+  faArrowCircleLeft,
+  faInstagram
+);
 
 createApp(App)
   .use(store)
