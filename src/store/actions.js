@@ -2,6 +2,15 @@ import metadata from "../assets/metadata.json";
 
 const load_database = ({ commit }) => {
   commit("SET_METADATA", metadata);
+  var id_metadata = {};
+  for (var category in metadata) {
+    id_metadata[category] = {};
+    for (var img_index in metadata[category]) {
+      var img_obj = metadata[category][img_index];
+      id_metadata[category][img_obj.id] = img_obj;
+    }
+  }
+  commit("SET_ID_METADATA", id_metadata);
   commit("SET_CATEGORIES", metadata);
 };
 

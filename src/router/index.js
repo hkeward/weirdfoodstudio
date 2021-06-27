@@ -76,6 +76,7 @@ const routes = [
     meta: {
       title: "Weird Food Studio",
     },
+    props: true,
   },
 ];
 
