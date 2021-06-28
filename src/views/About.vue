@@ -5,7 +5,7 @@
         <img v-bind:src="getArtistImgUrl()" />
       </div>
       <div class="socials">
-        <a href="https://www.instagram.com/octoscribbles/">
+        <a href="https://www.instagram.com/weird_food_studio/">
           <font-awesome-icon
             v-bind:icon="['fab', 'instagram']"
           ></font-awesome-icon>
@@ -39,7 +39,7 @@
       </p>
       <br />
       <p>
-        Find more of her weird food on Instagram, find her prints on Etsy, and
+        Find more of her weird food on <a href="https://www.instagram.com/weird_food_studio/">Instagram</a>, find her prints on Etsy, and
         find her below the cherry moon in an ancient dusk
       </p>
     </div>
