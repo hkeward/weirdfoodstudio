@@ -32,3 +32,7 @@ npm run test:unit
 ```
 npm run lint
 ```
+
+## Populating data
+
+Data can be populated using [scripts/get_art.py](scripts/get_art.py). Set this up as a cronjob to pull periodically.
