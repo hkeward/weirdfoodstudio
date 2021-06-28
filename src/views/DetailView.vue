@@ -7,7 +7,7 @@
       <div class="image_info">
         <strong>{{ img_obj.name }}</strong>
         <p>
-          {{ img_obj.description }}
+          {{ img_obj.medium }}
         </p>
       </div>
     </div>
