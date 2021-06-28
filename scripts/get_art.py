@@ -22,6 +22,8 @@ def list_files(service):
 
 
 def sort_files(files):
+	punctuation = "!#$%&\"'()*+,./:;<=>?@[\\]^_`{|}~"
+
 	folder_id_to_name = {}
 	for file in files:
 		if file["mimeType"] == "application/vnd.google-apps.folder":
@@ -44,9 +46,13 @@ def sort_files(files):
 				name = re.sub("\.[^.]*$", "", file["name"])
 				medium = ""
 
+			id = name.lower().replace(" ", "-")
+			for char in punctuation:
+				id = id.replace(char, "")
+
 			file_obj = {
-				"id": name.lower().replace(" ", "-"),
-				"file": file["name"],
+				"id": id,
+				"file": file["name"].replace("?", "").replace("#", ""),
 				"name": name,
 				"drive_id": file["id"],
 				"medium": medium,
@@ -55,6 +61,9 @@ def sort_files(files):
 
 			sorted_files[folder_id_to_name[parent]].append(file_obj)
 
+	# Set the first item in the Digital array to the file with ID breakfast-c2020
+	first_image_index = [item for item in sorted_files["digital"] if item["id"] == "breakfast-c2020"][0]
+	sorted_files["digital"].insert(0, sorted_files["digital"].pop(sorted_files["digital"].index(first_image_index)))
 	sorted_files.pop("jessi-art", None)
 	return sorted_files
 
@@ -83,7 +92,7 @@ def get_files(files, asset_dir, service, downloaded_checksums):
 	def _download_file(file_obj):
 		file_exists = check_file_exists(file_obj, downloaded_checksums, asset_dir)
 		if not file_exists:
-			print("Downloading file {}".format(file_obj["name"]))
+			print("Downloading file {}".format(file_obj["file"]))
 			request = service.files().get_media(fileId = file_obj["drive_id"])
 			fh = io.FileIO(asset_dir + "/" + file_obj["file"], "w+")
 			downloader = MediaIoBaseDownload(fh, request)
