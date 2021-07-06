@@ -9,9 +9,22 @@ RUN npm install
 
 RUN npm run build
 
-FROM node:stretch-slim
-COPY --from=builder /build/dist /dist
+FROM debian:stretch
+COPY --from=builder /build/dist /var/www/html
 
-RUN npm install --global serve
+RUN apt-get -qq update && \
+	apt-get -qq install \
+	nginx \
+	nginx-common \
+	libnginx-mod-http-auth-pam \
+	libnginx-mod-http-dav-ext \
+	libnginx-mod-http-echo \
+	libnginx-mod-http-geoip \
+	libnginx-mod-http-image-filter \
+	libnginx-mod-http-subs-filter \
+	libnginx-mod-http-upstream-fair \
+	libnginx-mod-http-xslt-filter \
+	libnginx-mod-mail \
+	libnginx-mod-stream
 
-ENTRYPOINT ["serve", "-l", "7200", "dist"]
+CMD ["nginx", "-g", "daemon off;"]
