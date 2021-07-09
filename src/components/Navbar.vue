@@ -1,50 +1,50 @@
 <template>
   <div>
-    <div v-if="menu_expanded" id="nav">
-      <div id="nav_open_close" @click="toggle_menu" class="icon_button">
+    <div v-if="menu_expanded" id="nav" :style="navbarStyle">
+      <div @click="toggle_menu(mobile)" :id="nav_close">
         <font-awesome-icon icon="times-circle"></font-awesome-icon>
       </div>
       <div id="links-wrapper" class="links">
         <div id="links-top" class="links">
           <router-link
             to="/collage"
-            @click="scrollToTop"
+            @click="scrollClose"
             :class="{ 'is-active': subIsActive('/collage') }"
             >Collage</router-link
           >
           <router-link
             to="/fine-art"
-            @click="scrollToTop"
+            @click="scrollClose"
             :class="{ 'is-active': subIsActive('/fine-art') }"
             >Fine Art</router-link
           >
           <router-link
             to="/prints"
-            @click="scrollToTop"
+            @click="scrollClose"
             :class="{ 'is-active': subIsActive('/prints') }"
             >Prints</router-link
           >
           <router-link
             to="/digital"
-            @click="scrollToTop"
+            @click="scrollClose"
             :class="{ 'is-active': subIsActive('/digital') }"
             >Digital</router-link
           >
           <router-link
             to="/analogue"
-            @click="scrollToTop"
+            @click="scrollClose"
             :class="{ 'is-active': subIsActive('/analogue') }"
             >Analogue</router-link
           >
         </div>
         <div id="links-bottom" class="links">
-          <router-link to="/about" @click="scrollToTop">About Me</router-link>
-          <router-link to="/" @click="scrollToTop">Home</router-link>
+          <router-link to="/about" @click="scrollClose">About Me</router-link>
+          <router-link to="/" @click="scrollClose">Home</router-link>
         </div>
       </div>
     </div>
-    <div v-else id="nav">
-      <div id="nav_open_close" @click="toggle_menu" class="icon_button">
+    <div v-else id="nav" :style="navbarStyle">
+      <div @click="toggle_menu(mobile)">
         <font-awesome-icon icon="hamburger"></font-awesome-icon>
       </div>
     </div>
@@ -56,13 +56,50 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Navbar",
+  props: {
+    mobile: Boolean,
+  },
   computed: {
     ...mapState(["menu_expanded"]),
+    navbarStyle() {
+      if (this.mobile === true) {
+        if (this.menu_expanded === true) {
+          return {
+            width: "100%",
+            top: 0,
+            left: 0,
+            margin: 0,
+            padding: "20px 0 0 0",
+            "border-radius": 0,
+            "text-align": "center",
+            "max-height": "unset",
+          };
+        } else {
+          return {
+            height: "auto",
+            margin: 0,
+            padding: "10px",
+          };
+        }
+      } else {
+        return {};
+      }
+    },
+    nav_close() {
+      if (this.mobile === true) {
+        return "nav_close_mobile";
+      } else {
+        return "nav_close";
+      }
+    },
   },
   methods: {
     ...mapActions(["get_set_nav_width", "toggle_menu"]),
-    scrollToTop() {
+    scrollClose() {
       window.scrollTo(0, 0);
+      if (this.mobile === true) {
+        this.toggle_menu();
+      }
     },
     subIsActive(input) {
       const paths = Array.isArray(input) ? input : [input];
@@ -71,6 +108,21 @@ export default {
         return this.$route.path.indexOf(path) === 0; // current path starts with this path string
       });
     },
+    handleEscape(event) {
+      if (event.keyCode === 27) {
+        if (this.mobile && this.menu_expanded) {
+          this.toggle_menu();
+        }
+      }
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener("keyup", (event) => this.handleEscape(event));
+    });
+  },
+  beforeUnmount() {
+    window.removeEventListener("keyup", (event) => this.handleEscape(event));
   },
 };
 </script>
@@ -93,6 +145,15 @@ export default {
   font-weight: 900;
 }
 
+#nav_close {
+  text-align: center;
+}
+
+#nav_close_mobile {
+  text-align: end;
+  padding-right: 20px;
+}
+
 .links {
   display: flex;
   flex-direction: column;
@@ -109,10 +170,6 @@ export default {
 
 a {
   padding: 30px 0px;
-}
-
-#nav_open_close {
-  text-align: center;
 }
 
 a.router-link-exact-active,

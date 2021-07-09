@@ -1,22 +1,40 @@
 <template>
-  <div id="title_bar">
-    <div id="text_display">
+  <div>
+    <div>
       <router-link to="/">
         <div id="title_text">Weird Food Studio</div>
       </router-link>
     </div>
+    <div v-if="windowWidth <= smallScreenWidth" class="nav_holder">
+      <navbar :mobile="true" />
+    </div>
   </div>
 </template>
 
-<style scoped>
-#title_bar {
-  font-family: "Squada One", cursive;
-}
+<script>
+import Navbar from "@/components/Navbar.vue";
 
+export default {
+  name: "TitleBar",
+  props: ["windowWidth", "smallScreenWidth"],
+  components: {
+    Navbar,
+  },
+};
+</script>
+
+<style scoped>
 #title_text {
+  font-family: "Squada One", cursive;
   font-size: 15em;
   text-align: left;
   color: #2c3e50;
   text-decoration: none;
+}
+
+.nav_holder {
+  position: fixed;
+  top: 10px;
+  left: 10px;
 }
 </style>

@@ -39,8 +39,10 @@
       </p>
       <br />
       <p>
-        Find more of her weird food on <a href="https://www.instagram.com/weird_food_studio/">Instagram</a>, find her prints on Etsy, and
-        find her below the cherry moon in an ancient dusk
+        Find more of her weird food on
+        <a href="https://www.instagram.com/weird_food_studio/">Instagram</a>,
+        find her prints on Etsy, and find her below the cherry moon in an
+        ancient dusk
       </p>
     </div>
   </div>

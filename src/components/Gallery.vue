@@ -13,6 +13,7 @@
             name: 'Detail',
             params: { id: metadata[category][0].id, category: category },
           }"
+          @click="scrollToTop"
         >
           <img v-bind:src="getImgUrl(metadata[category][0])" />
         </router-link>
@@ -26,6 +27,7 @@
             name: 'Detail',
             params: { id: img_obj.id, category: category },
           }"
+          @click="scrollToTop"
         >
           <img v-bind:src="getImgUrl(img_obj)" />
         </router-link>
@@ -45,6 +47,9 @@ export default {
   methods: {
     getImgUrl(img_obj) {
       return require("../assets/" + img_obj.file);
+    },
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
   },
 };

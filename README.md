@@ -1,6 +1,6 @@
 # weirdfoodstudio
 
-An art portfolio website for Jessi Wood. Live [here](weirdfoodstudio.ca).
+An art portfolio website for Jessi Wood. Live [here](https://weirdfoodstudio.ca).
 
 
 ## Project setup

@@ -25,6 +25,7 @@
               name: 'Detail',
               params: { id: prev_img_id, category: category },
             }"
+            @click="scrollToTop"
           >
             <font-awesome-icon icon="arrow-circle-left"></font-awesome-icon>
           </router-link>
@@ -46,6 +47,7 @@
               name: 'Detail',
               params: { id: next_img_id, category: category },
             }"
+            @click="scrollToTop"
           >
             <font-awesome-icon icon="arrow-circle-right"></font-awesome-icon>
           </router-link>

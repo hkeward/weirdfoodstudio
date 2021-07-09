@@ -1,9 +1,12 @@
 <template>
   <div id="main">
-    <navbar />
+    <navbar v-if="windowWidth > smallScreenWidth" />
     <div id="content" v-bind:style="bodyMarginStyle">
-      <title-bar />
-      <router-view class="main_content" />
+      <title-bar
+        :windowWidth="windowWidth"
+        :smallScreenWidth="smallScreenWidth"
+      />
+      <router-view class="main_content" :windowWidth="windowWidth" />
     </div>
   </div>
 </template>
@@ -18,20 +21,48 @@ export default {
     TitleBar,
     Navbar,
   },
+  data() {
+    return {
+      windowWidth: window.innerWidth,
+      smallScreenWidth: 990,
+    };
+  },
   computed: {
     ...mapState(["nav_width"]),
     bodyMarginStyle() {
       return {
         "padding-left": this.nav_width + 80 + "px",
+        "padding-right": "80px",
       };
+    },
+  },
+  methods: {
+    ...mapActions(["load_database", "get_set_nav_width", "toggle_menu"]),
+    onResize() {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth <= this.smallScreenWidth) {
+        this.get_set_nav_width(0);
+      } else {
+        this.get_set_nav_width();
+      }
     },
   },
   mounted() {
     this.load_database();
-    this.get_set_nav_width();
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth <= this.smallScreenWidth) {
+      this.get_set_nav_width(0);
+      // default to menu closed on mobile
+      this.toggle_menu();
+    } else {
+      this.get_set_nav_width();
+    }
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+    });
   },
-  methods: {
-    ...mapActions(["load_database", "get_set_nav_width"]),
+  beforeUnmount() {
+    window.removeEventListener("resize", this.onResize);
   },
 };
 </script>

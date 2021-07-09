@@ -14,21 +14,27 @@ const load_database = ({ commit }) => {
   commit("SET_CATEGORIES", metadata);
 };
 
-const get_set_nav_width = ({ state, commit }) => {
+const get_set_nav_width = ({ state, commit }, set_width) => {
   var width;
-  if (state.menu_expanded) {
-    width = state.nav_width_expanded;
+  if (typeof set_width !== "undefined") {
+    width = set_width;
   } else {
-    width = state.nav_width_collapsed;
+    if (state.menu_expanded) {
+      width = state.nav_width_expanded;
+    } else {
+      width = state.nav_width_collapsed;
+    }
   }
 
   commit("SET_NAVWIDTH", width);
 };
 
-const toggle_menu = ({ state, commit, dispatch }) => {
+const toggle_menu = ({ state, commit, dispatch }, mobile) => {
   var menu_was_expanded = state.menu_expanded;
   commit("TOGGLE_MENU", !menu_was_expanded);
-  dispatch("get_set_nav_width");
+  if (mobile === false) {
+    dispatch("get_set_nav_width");
+  }
 };
 
 export default {

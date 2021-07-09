@@ -16,6 +16,7 @@
           name: 'Detail',
           params: { id: img_obj.id, category: category },
         }"
+        @click="scrollToTop"
       >
         <img v-bind:src="getImgUrl(img_obj)" />
       </router-link>
@@ -28,10 +29,8 @@ import { mapState } from "vuex";
 
 export default {
   name: "CategoryGallery",
-  data() {
-    return {
-      windowWidth: window.innerWidth,
-    };
+  props: {
+    windowWidth: Number,
   },
   computed: {
     ...mapState(["metadata"]),
@@ -78,20 +77,12 @@ export default {
       }
     },
   },
-  mounted() {
-    this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
-    });
-  },
-  beforeUnmount() {
-    window.removeEventListener("resize", this.onResize);
-  },
   methods: {
     getImgUrl(img_obj) {
       return require("../assets/" + img_obj.file);
     },
-    onResize() {
-      this.windowWidth = window.innerWidth;
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
   },
 };
@@ -112,7 +103,6 @@ export default {
   padding: 0 20px 0 0;
 }
 
-/* TODO I broke this by putting styles directly on the items */
 @media screen and (max-width: 1200px) {
   .gallery_column {
     flex: 50%;
