@@ -62,6 +62,14 @@ const routes = [
     },
   },
   {
+    path: "/the-comic",
+    name: "The Comic",
+    component: CategoryGallery,
+    meta: {
+      title: "Weird Food Studio - The Comic",
+    },
+  },
+  {
     path: "/:category/:id",
     name: "Detail",
     component: DetailView,

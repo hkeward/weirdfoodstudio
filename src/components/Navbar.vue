@@ -36,6 +36,12 @@
             :class="{ 'is-active': subIsActive('/analogue') }"
             >Analogue</router-link
           >
+          <router-link
+            to="/the-comic"
+            @click="scrollClose"
+            :class="{ 'is-active': subIsActive('/the-comic') }"
+            >The Comic</router-link
+          >
         </div>
         <div id="links-bottom" class="links">
           <router-link to="/about" @click="scrollClose">About Me</router-link>
