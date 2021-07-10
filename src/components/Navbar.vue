@@ -146,7 +146,7 @@ export default {
   background-color: #82ced9;
   margin-left: 20px;
   border-radius: 7px;
-  font-size: 2.5em;
+  font-size: 2em;
   color: white;
   font-weight: 900;
 }
@@ -175,7 +175,7 @@ export default {
 }
 
 a {
-  padding: 30px 0px;
+  padding: 15px 0px;
 }
 
 a.router-link-exact-active,

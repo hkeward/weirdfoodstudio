@@ -26,7 +26,7 @@ export default {
 <style scoped>
 #title_text {
   font-family: "Squada One", cursive;
-  font-size: 15em;
+  font-size: 12em;
   text-align: left;
   color: #2c3e50;
   text-decoration: none;
