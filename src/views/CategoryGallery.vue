@@ -94,7 +94,7 @@ export default {
   flex-wrap: wrap;
 }
 #category_gallery img {
-  width: 100%;
+  max-width: 100%;
   margin-bottom: 5px;
   border-radius: 7px;
 }
