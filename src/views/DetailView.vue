@@ -1,68 +1,128 @@
 <template>
-  <div class="detail-wrapper">
-    <div class="detail">
-      <div class="image">
-        <img v-bind:src="getImgUrl(img_obj)" />
-      </div>
-      <div id="info">
-        <div class="image_info">
-          <strong>{{ img_obj.name }}</strong>
-          <p>
-            {{ img_obj.medium }}
-          </p>
-        </div>
-        <div class="gallery_nav">
-          <div id="nav_flex">
-            <div v-if="typeof prev_img_id === 'undefined'" class="nav_margin">
-              <font-awesome-icon
-                icon="arrow-circle-left"
-                style="opacity: 0.3"
-              ></font-awesome-icon>
-            </div>
-            <div v-else class="icon_button nav_margin">
-              <router-link
-                v-bind:to="{
-                  name: 'Detail',
-                  params: { id: prev_img_id, category: category },
-                }"
-                @click="scrollToTop"
-              >
-                <font-awesome-icon icon="arrow-circle-left"></font-awesome-icon>
-              </router-link>
-            </div>
-            <div class="nav_margin">
-              <router-link v-bind:to="{ path: '/' + category }">
-                Back to gallery
-              </router-link>
-            </div>
-            <div v-if="typeof next_img_id === 'undefined'">
-              <font-awesome-icon
-                icon="arrow-circle-right"
-                style="opacity: 0.3"
-              ></font-awesome-icon>
-            </div>
-            <div v-else class="icon_button">
-              <router-link
-                v-bind:to="{
-                  name: 'Detail',
-                  params: { id: next_img_id, category: category },
-                }"
-                @click="scrollToTop"
-              >
-                <font-awesome-icon
-                  icon="arrow-circle-right"
-                ></font-awesome-icon>
-              </router-link>
-            </div>
+  <div>
+    <div v-if="!zoomed" class="detail-wrapper">
+      <div class="gallery_nav">
+        <div id="nav_flex">
+          <div v-if="typeof prev_img_id === 'undefined'" class="nav_margin">
+            <font-awesome-icon
+              icon="arrow-circle-left"
+              style="opacity: 0.3"
+            ></font-awesome-icon>
+          </div>
+          <div v-else class="icon_button nav_margin">
+            <router-link
+              v-bind:to="{
+                name: 'Detail',
+                params: { id: prev_img_id, category: category },
+              }"
+              @click="scrollToTop"
+            >
+              <font-awesome-icon icon="arrow-circle-left"></font-awesome-icon>
+            </router-link>
+          </div>
+          <div class="nav_margin">
+            <router-link v-bind:to="{ path: '/' + category }">
+              Back to gallery
+            </router-link>
+          </div>
+          <div v-if="typeof next_img_id === 'undefined'">
+            <font-awesome-icon
+              icon="arrow-circle-right"
+              style="opacity: 0.3"
+            ></font-awesome-icon>
+          </div>
+          <div v-else class="icon_button">
+            <router-link
+              v-bind:to="{
+                name: 'Detail',
+                params: { id: next_img_id, category: category },
+              }"
+              @click="scrollToTop"
+            >
+              <font-awesome-icon icon="arrow-circle-right"></font-awesome-icon>
+            </router-link>
           </div>
         </div>
+        <div id="nav_flex_spacer"></div>
+      </div>
+
+      <div class="detail">
+        <div class="image" @click="toggle_zoomed">
+          <img v-bind:src="getImgUrl(img_obj)" />
+        </div>
+
+        <div id="info">
+          <div class="image_info">
+            <strong>{{ img_obj.name }}</strong>
+            <p>
+              {{ img_obj.medium }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else>
+      <div id="fullpage_image" :style="zoomedImageStyle"></div>
+      <div id="fullpage_nav">
+        <div
+          v-if="typeof prev_img_id === 'undefined'"
+          class="nav_arrow_container"
+        >
+          <div class="nav_margin nav_zoomed">
+            <font-awesome-icon
+              icon="arrow-circle-left"
+              style="opacity: 0.3"
+            ></font-awesome-icon>
+          </div>
+        </div>
+        <router-link
+          v-else
+          v-bind:to="{
+            name: 'Detail',
+            params: { id: prev_img_id, category: category },
+          }"
+          @click="scrollToTop"
+          class="nav_arrow_container"
+        >
+          <div class="icon_button nav_margin nav_zoomed">
+            <font-awesome-icon icon="arrow-circle-left"></font-awesome-icon>
+          </div>
+        </router-link>
+
+        <div id="zoomed_spacer" @click="toggle_zoomed"></div>
+
+        <div
+          v-if="typeof next_img_id === 'undefined'"
+          class="nav_arrow_container"
+        >
+          <div class="nav_zoomed">
+            <font-awesome-icon
+              icon="arrow-circle-right"
+              style="opacity: 0.3"
+            ></font-awesome-icon>
+          </div>
+        </div>
+        <router-link
+          v-else
+          v-bind:to="{
+            name: 'Detail',
+            params: { id: next_img_id, category: category },
+          }"
+          @click="scrollToTop"
+          class="nav_arrow_container"
+        >
+          <div class="icon_button nav_zoomed">
+            <font-awesome-icon icon="arrow-circle-right"></font-awesome-icon>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "DetailView",
@@ -71,7 +131,7 @@ export default {
     id: String,
   },
   computed: {
-    ...mapState(["id_metadata"]),
+    ...mapState(["id_metadata", "zoomed"]),
     img_obj() {
       return this.id_metadata[this.category][this.id];
     },
@@ -86,19 +146,110 @@ export default {
       var next_id = this.category_keys[this.category_keys.indexOf(this.id) + 1];
       return next_id;
     },
+    zoomedImageStyle() {
+      if (this.zoomed) {
+        return {
+          display: "flex",
+          "background-image": 'url("' + this.getImgUrl(this.img_obj) + '")',
+        };
+      } else {
+        return {
+          display: "none",
+          "background-image": "none",
+        };
+      }
+    },
   },
   methods: {
+    ...mapActions(["toggle_zoomed"]),
     getImgUrl(img_obj) {
       return require("../assets/" + img_obj.file);
     },
     scrollToTop() {
       window.scrollTo(0, 0);
     },
+    async handleKeyup(event) {
+      console.log("Triggered!");
+
+      if (event.keyCode === 27) {
+        if (this.zoomed) {
+          this.toggle_zoomed();
+        }
+      } else if (event.keyCode === 13) {
+        this.toggle_zoomed();
+      } else if (event.keyCode === 8) {
+        if (this.zoomed) {
+          this.toggle_zoomed();
+        }
+        const result = await this.$router.push({ path: `/${this.category}` });
+        console.log(result);
+      } else if (event.keyCode === 37) {
+        if (this.prev_img_id !== undefined) {
+          await this.$router.push({
+            name: "Detail",
+            params: { id: this.prev_img_id, category: this.category },
+          });
+        }
+      } else if (event.keyCode === 39) {
+        if (this.next_img_id !== undefined) {
+          await this.$router.push({
+            name: "Detail",
+            params: { id: this.next_img_id, category: this.category },
+          });
+        }
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener("keyup", this.handleKeyup);
+  },
+  beforeUnmount() {
+    window.removeEventListener("keyup", this.handleKeyup);
   },
 };
 </script>
 
 <style scoped>
+#fullpage_image,
+#fullpage_nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+}
+
+#fullpage_image {
+  background-size: contain;
+  background-repeat: no-repeat no-repeat;
+  background-position: center center;
+  background-color: black;
+}
+
+#fullpage_nav {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.nav_arrow_container {
+  display: flex;
+  height: 100%;
+}
+
+.nav_zoomed {
+  margin: 15px;
+  background-color: black;
+  padding: 1vw;
+  border-radius: 50%;
+  align-self: center;
+}
+
+#zoomed_spacer {
+  flex-basis: 100%;
+}
+
 .detail-wrapper {
   display: flex;
   flex-direction: column;
@@ -108,14 +259,21 @@ export default {
   flex-direction: row;
   justify-content: center;
   flex-basis: 100%;
-  font-size: 1.5em;
+  font-size: 100%;
 }
+
 #nav_flex {
-  flex-basis: 70%;
   display: flex;
-  align-items: center;
+  justify-content: center;
   flex-direction: row;
+  padding: 1% 0;
+  flex-basis: 70%;
 }
+
+#nav_flex_spacer {
+  flex-basis: 30%;
+}
+
 .nav_margin {
   margin-right: 20px;
 }
@@ -138,7 +296,7 @@ img {
 }
 .image_info {
   flex-basis: 30%;
-  font-size: 3em;
+  font-size: 150%;
 }
 #info {
   display: flex;
@@ -162,6 +320,9 @@ img {
   }
   #nav_flex {
     flex-basis: 100%;
+  }
+  #nav_flex_spacer {
+    flex-basis: 0%;
   }
 }
 </style>

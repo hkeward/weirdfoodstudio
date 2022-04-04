@@ -18,10 +18,15 @@ const TOGGLE_MENU = (state, menu_expanded) => {
   state.menu_expanded = menu_expanded;
 };
 
+const TOGGLE_ZOOMED = (state, zoomed) => {
+  state.zoomed = zoomed;
+};
+
 export default {
   SET_METADATA,
   SET_ID_METADATA,
   SET_CATEGORIES,
   SET_NAVWIDTH,
   TOGGLE_MENU,
+  TOGGLE_ZOOMED,
 };

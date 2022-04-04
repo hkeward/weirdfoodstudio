@@ -62,7 +62,7 @@ export default {
 <style scoped>
 #about {
   text-align: left;
-  font-size: 2em;
+  font-size: 120%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -81,7 +81,7 @@ img {
   flex-basis: 60%;
 }
 .socials {
-  font-size: 2em;
+  font-size: 200%;
   align-self: center;
 }
 

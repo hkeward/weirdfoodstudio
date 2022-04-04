@@ -68,6 +68,10 @@ export default {
 </script>
 
 <style>
+html {
+  font-size: 100%;
+}
+
 @font-face {
   font-family: "Squada One";
   font-style: normal;

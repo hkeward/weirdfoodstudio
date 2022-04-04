@@ -37,8 +37,14 @@ const toggle_menu = ({ state, commit, dispatch }, mobile) => {
   }
 };
 
+const toggle_zoomed = ({ state, commit }) => {
+  var was_zoomed = state.zoomed;
+  commit("TOGGLE_ZOOMED", !was_zoomed);
+};
+
 export default {
   load_database,
   get_set_nav_width,
   toggle_menu,
+  toggle_zoomed,
 };
