@@ -32,7 +32,6 @@ export default {
     bodyMarginStyle() {
       return {
         "padding-left": this.nav_width + 80 + "px",
-        "padding-right": "80px",
       };
     },
   },
@@ -103,13 +102,13 @@ html {
 #content {
   display: flex;
   flex-direction: column;
-  flex-basis: 70%;
+  flex-basis: 100%;
   transition: padding-left 0.5s;
 }
 
 @media screen and (max-width: 1200px) {
   #content {
-    flex-basis: 90%;
+    flex-basis: 100%;
   }
 }
 

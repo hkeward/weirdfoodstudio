@@ -146,7 +146,7 @@ export default {
   background-color: #82ced9;
   margin-left: 20px;
   border-radius: 7px;
-  font-size: 100%;
+  font-size: 225%;
   color: white;
   font-weight: 900;
 }

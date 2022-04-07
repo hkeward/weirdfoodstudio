@@ -1,62 +1,67 @@
 <template>
   <div>
     <div v-if="!zoomed" class="detail-wrapper">
-      <div class="gallery_nav">
-        <div id="nav_flex">
-          <div v-if="typeof prev_img_id === 'undefined'" class="nav_margin">
-            <font-awesome-icon
-              icon="arrow-circle-left"
-              style="opacity: 0.3"
-            ></font-awesome-icon>
-          </div>
-          <div v-else class="icon_button nav_margin">
-            <router-link
-              v-bind:to="{
-                name: 'Detail',
-                params: { id: prev_img_id, category: category },
-              }"
-              @click="scrollToTop"
-            >
-              <font-awesome-icon icon="arrow-circle-left"></font-awesome-icon>
-            </router-link>
-          </div>
-          <div class="nav_margin">
-            <router-link v-bind:to="{ path: '/' + category }">
-              Back to gallery
-            </router-link>
-          </div>
-          <div v-if="typeof next_img_id === 'undefined'">
-            <font-awesome-icon
-              icon="arrow-circle-right"
-              style="opacity: 0.3"
-            ></font-awesome-icon>
-          </div>
-          <div v-else class="icon_button">
-            <router-link
-              v-bind:to="{
-                name: 'Detail',
-                params: { id: next_img_id, category: category },
-              }"
-              @click="scrollToTop"
-            >
-              <font-awesome-icon icon="arrow-circle-right"></font-awesome-icon>
-            </router-link>
-          </div>
-        </div>
-        <div id="nav_flex_spacer"></div>
-      </div>
-
       <div class="detail">
         <div class="image" @click="toggle_zoomed">
           <img v-bind:src="getImgUrl(img_obj)" />
         </div>
 
-        <div id="info">
-          <div class="image_info">
-            <strong>{{ img_obj.name }}</strong>
-            <p>
-              {{ img_obj.medium }}
-            </p>
+        <div id="right_sidebar">
+          <div id="info">
+            <div class="image_info">
+              <strong>{{ img_obj.name }}</strong>
+              <p id="medium">
+                {{ img_obj.medium }}
+              </p>
+            </div>
+          </div>
+
+          <div class="gallery_nav">
+            <div id="nav_flex">
+              <div v-if="typeof prev_img_id === 'undefined'" class="nav_margin">
+                <font-awesome-icon
+                  icon="arrow-circle-left"
+                  style="opacity: 0.3"
+                ></font-awesome-icon>
+              </div>
+              <div v-else class="icon_button nav_margin">
+                <router-link
+                  v-bind:to="{
+                    name: 'Detail',
+                    params: { id: prev_img_id, category: category },
+                  }"
+                  @click="scrollToTop"
+                >
+                  <font-awesome-icon
+                    icon="arrow-circle-left"
+                  ></font-awesome-icon>
+                </router-link>
+              </div>
+              <div class="nav_margin">
+                <router-link v-bind:to="{ path: '/' + category }">
+                  Back to gallery
+                </router-link>
+              </div>
+              <div v-if="typeof next_img_id === 'undefined'">
+                <font-awesome-icon
+                  icon="arrow-circle-right"
+                  style="opacity: 0.3"
+                ></font-awesome-icon>
+              </div>
+              <div v-else class="icon_button">
+                <router-link
+                  v-bind:to="{
+                    name: 'Detail',
+                    params: { id: next_img_id, category: category },
+                  }"
+                  @click="scrollToTop"
+                >
+                  <font-awesome-icon
+                    icon="arrow-circle-right"
+                  ></font-awesome-icon>
+                </router-link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -254,11 +259,16 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+.detail_wrapper,
+#image {
+  flex: 100%;
+}
+
 .gallery_nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex-basis: 100%;
   font-size: 100%;
 }
 
@@ -268,6 +278,7 @@ export default {
   flex-direction: row;
   padding: 1% 0;
   flex-basis: 70%;
+  font-size: 120%;
 }
 
 #nav_flex_spacer {
@@ -282,27 +293,42 @@ export default {
   flex-basis: 100%;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: center;
+  margin-right: 20px;
   text-align: left;
-  align-items: flex-start;
+  align-items: stretch;
 }
 img {
   border-radius: 7px;
   max-width: 100%;
 }
 .image {
-  flex-basis: 70%;
+  flex-basis: 60%;
   margin-right: 30px;
   text-align: center;
 }
 .image_info {
-  flex-basis: 30%;
-  font-size: 150%;
+  font-size: 200%;
 }
+#right_sidebar {
+  display: flex;
+  flex-basis: 40%;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 #info {
+  background: #82ced9;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 2%;
+  border-radius: 4%;
 }
+
+#medium {
+  margin-top: 2%;
+}
+
 @media screen and (max-width: 990px) {
   .detail {
     width: 100%;

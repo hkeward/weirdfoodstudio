@@ -30,6 +30,7 @@ export default {
   text-align: left;
   color: #2c3e50;
   text-decoration: none;
+  margin-top: 2%;
 }
 
 .nav_holder {
