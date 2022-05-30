@@ -5,6 +5,14 @@
         <img v-bind:src="getArtistImgUrl()" />
       </div>
       <div class="socials">
+        <a href="https://patreon.com/weirdfoodstudio">
+          <font-awesome-icon
+            v-bind:icon="['fab', 'patreon']"
+          ></font-awesome-icon>
+        </a>
+        <a href="https://weirdfoodstudio.etsy.com">
+          <font-awesome-icon v-bind:icon="['fab', 'etsy']"></font-awesome-icon>
+        </a>
         <a href="https://www.instagram.com/weird_food_studio/">
           <font-awesome-icon
             v-bind:icon="['fab', 'instagram']"
@@ -39,10 +47,24 @@
       </p>
       <br />
       <p>
-        Find more of her weird food on
-        <a href="https://www.instagram.com/weird_food_studio/">Instagram</a>,
-        find her prints on Etsy, and find her below the cherry moon in an
-        ancient dusk
+        Find more of her weird food
+        <strong
+          ><a
+            href="https://www.instagram.com/weird_food_studio/"
+            class="social_link"
+            >on Instagram</a
+          ></strong
+        >, find prints, buttons, and oddities
+        <strong
+          ><a href="https://weirdfoodstudio.etsy.com" class="social_link"
+            >on Etsy</a
+          ></strong
+        >,
+        <strong
+          ><a href="https://patreon.com/weirdfoodstudio" class="social_link"
+            >support her on Patreon</a
+          ></strong
+        >, and find her below the cherry moon in an ancient dusk.
       </p>
     </div>
   </div>
@@ -83,6 +105,14 @@ img {
 .socials {
   font-size: 200%;
   align-self: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.social_link {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 990px) {

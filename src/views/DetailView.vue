@@ -174,8 +174,6 @@ export default {
       window.scrollTo(0, 0);
     },
     async handleKeyup(event) {
-      console.log("Triggered!");
-
       if (event.keyCode === 27) {
         if (this.zoomed) {
           this.toggle_zoomed();
@@ -186,8 +184,7 @@ export default {
         if (this.zoomed) {
           this.toggle_zoomed();
         }
-        const result = await this.$router.push({ path: `/${this.category}` });
-        console.log(result);
+        await this.$router.push({ path: `/${this.category}` });
       } else if (event.keyCode === 37) {
         if (this.prev_img_id !== undefined) {
           await this.$router.push({
