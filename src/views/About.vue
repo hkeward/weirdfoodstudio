@@ -13,59 +13,62 @@
         <a href="https://weirdfoodstudio.etsy.com">
           <font-awesome-icon v-bind:icon="['fab', 'etsy']"></font-awesome-icon>
         </a>
-        <a href="https://www.instagram.com/weird_food_studio/">
-          <font-awesome-icon
-            v-bind:icon="['fab', 'instagram']"
-          ></font-awesome-icon>
-        </a>
       </div>
     </div>
     <div id="description">
+      <h2 id="about_me_header">Art is like food</h2>
+      <h3 id="about_me_subheader">It sticks to your insides</h3>
+      <p>I make:</p>
+      <ul>
+        <li>
+          <strong>Commission work on-demand</strong> (editorial illustrations,
+          portraits, album covers, etc.)
+        </li>
+        <li><strong>Original work</strong></li>
+        <li><strong>Prints of original work</strong></li>
+        <li>
+          <strong>Lino prints</strong> (physically designed, hand carved–no
+          computer involved)
+        </li>
+        <li><strong>Comics</strong> (coming soon...)</li>
+      </ul>
       <p>
-        <strong>Jessi Wood</strong> illustrates, prints, paints, draws, and
-        generally toys with wistful forces within the Weird Food Studio that
-        cannot be understood
+        I use multiple mediums, including lino printing, acrylic, watercolour,
+        collage, digital tools (Adobe Illustrator and Photoshop), ink, and
+        pencil.
       </p>
-      <br />
-      <p>And tits.</p>
-      <p>Lots of tits, I tell yah</p>
-      <br />
       <p>
-        A lady who summons powers of the weird, the grimy, the melancholic, and
-        the deep, electric pull you feel towards a juicy fruit you can’t have,
-        before noticing it’s growing a vulva
+        My specialty is surreal, uncanny imagery rendered in a comic-like style,
+        but I’m flexible.
       </p>
-      <br />
       <p>
-        Harnessing those vibes, she crafts visual bubblegum for surrounding
-        eyeballs to chew
+        I studied formally at OCAD University (Toronto, Ontario) before
+        relocating to work in Waterloo.
       </p>
-      <br />
+      <p>I’m a versatile emerging artist, looking for her next meal.</p>
+      <p id="signoff">Eat Weird,</p>
+      <p id="signature">-Jessi, Canadian illustrator and printmaker</p>
       <p>
-        Similar, strange folk are welcome to join her in collaboration or
-        commission
-      </p>
-      <br />
-      <p>
-        Find more of her weird food
+        Contact artist for commissions and collaborations here:
         <strong
-          ><a
-            href="https://www.instagram.com/weird_food_studio/"
-            class="social_link"
-            >on Instagram</a
+          ><a href="mailto:weirdfoodstudio@gmail.com"
+            >weirdfoodstudio@gmail.com</a
           ></strong
-        >, find prints, buttons, and oddities
-        <strong
-          ><a href="https://weirdfoodstudio.etsy.com" class="social_link"
-            >on Etsy</a
-          ></strong
-        >,
-        <strong
-          ><a href="https://patreon.com/weirdfoodstudio" class="social_link"
-            >support her on Patreon</a
-          ></strong
-        >, and find her below the cherry moon in an ancient dusk.
+        >
       </p>
+      <h2>Support the artist here:</h2>
+      <ul>
+        <li>
+          <a href="https://patreon.com/weirdfoodstudio" class="social_link"
+            >Patreon</a
+          >
+        </li>
+        <li>
+          <a href="https://weirdfoodstudio.etsy.com" class="social_link"
+            >Etsy</a
+          >
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -82,26 +85,47 @@ export default {
 </script>
 
 <style scoped>
+#about_me_header {
+  margin: 0px;
+}
+
+#about_me_subheader {
+  margin: 0px 5px 50px 0px;
+}
+
+#signoff {
+  margin: 50px 50px 5px 0px;
+}
+
+#signature {
+  margin: 0px 0px 50px 15px;
+}
+
 #about {
   text-align: left;
   font-size: 120%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  margin: 15px 0px 0px 0px;
 }
+
 img {
   max-width: 100%;
   border-radius: 7px;
 }
+
 #img_socials {
   display: flex;
   flex-direction: column;
   flex-basis: 40%;
   margin-right: 30px;
 }
+
 #description {
   flex-basis: 60%;
 }
+
 .socials {
   font-size: 200%;
   align-self: center;
