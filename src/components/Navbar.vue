@@ -164,7 +164,6 @@ li {
   text-align: left;
   padding: 50px;
   background-color: #82ced9;
-  margin-left: 20px;
   border-radius: 7px;
   font-size: 225%;
   color: white;

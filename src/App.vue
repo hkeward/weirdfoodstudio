@@ -31,7 +31,7 @@ export default {
     ...mapState(["nav_width"]),
     bodyMarginStyle() {
       return {
-        "padding-left": this.nav_width + 80 + "px",
+        "padding-left": this.nav_width + 56 + "px",
       };
     },
   },
@@ -119,5 +119,9 @@ a {
 
 .icon_button:hover {
   cursor: pointer;
+}
+
+body {
+  margin: 28px;
 }
 </style>
