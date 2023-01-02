@@ -140,6 +140,7 @@ export default {
 #illustrations_section {
   margin: 0;
   padding: 15px 0px 0px 0px;
+  text-decoration: underline;
 }
 
 #illustration_types {
