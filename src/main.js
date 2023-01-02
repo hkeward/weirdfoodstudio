@@ -9,21 +9,14 @@ import {
   faTimesCircle,
   faArrowCircleRight,
   faArrowCircleLeft,
-  faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faInstagram,
-  faEtsy,
-  faPatreon,
-} from "@fortawesome/free-brands-svg-icons";
+import { faEtsy, faPatreon } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faHamburger,
   faTimesCircle,
   faArrowCircleRight,
   faArrowCircleLeft,
-  faShoppingBag,
-  faInstagram,
   faEtsy,
   faPatreon
 );

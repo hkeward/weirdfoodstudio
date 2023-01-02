@@ -23,4 +23,4 @@ yarn-error.log*
 # Build files
 docker/target
 .env
-src/assets
+src/assets/*

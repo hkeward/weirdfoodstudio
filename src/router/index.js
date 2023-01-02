@@ -14,11 +14,11 @@ const routes = [
     },
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/contact",
+    name: "Contact",
     component: About,
     meta: {
-      title: "Weird Food Studio - About",
+      title: "Weird Food Studio - Contact",
     },
   },
   {
@@ -30,43 +30,35 @@ const routes = [
     },
   },
   {
-    path: "/fine-art",
-    name: "Fine Art",
+    path: "/lino",
+    name: "Lino",
     component: CategoryGallery,
     meta: {
-      title: "Weird Food Studio - Fine Art",
+      title: "Weird Food Studio - Lino",
     },
   },
   {
-    path: "/prints",
-    name: "Prints",
+    path: "/illustrations-digital",
+    name: "Illustrations-Digital",
     component: CategoryGallery,
     meta: {
-      title: "Weird Food Studio - Prints",
+      title: "Weird Food Studio - Digital Illustrations",
     },
   },
   {
-    path: "/digital",
-    name: "Digital",
+    path: "/illustrations-physical",
+    name: "Illustrations-Physical",
     component: CategoryGallery,
     meta: {
-      title: "Weird Food Studio - Digital",
+      title: "Weird Food Studio - Physical Illustrations",
     },
   },
   {
-    path: "/analogue",
-    name: "Analogue",
+    path: "/comics",
+    name: "Comics",
     component: CategoryGallery,
     meta: {
-      title: "Weird Food Studio - Analogue",
-    },
-  },
-  {
-    path: "/the-comic",
-    name: "The Comic",
-    component: CategoryGallery,
-    meta: {
-      title: "Weird Food Studio - The Comic",
+      title: "Weird Food Studio - Comics",
     },
   },
   {

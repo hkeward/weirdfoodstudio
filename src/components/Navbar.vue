@@ -13,41 +13,41 @@
             >Collage</router-link
           >
           <router-link
-            to="/fine-art"
+            to="/lino"
             @click="scrollClose"
-            :class="{ 'is-active': subIsActive('/fine-art') }"
-            >Fine Art</router-link
+            :class="{ 'is-active': subIsActive('/lino') }"
+            >Lino</router-link
           >
+          <p id="illustrations_section">Illustrations</p>
+          <ul id="illustration_types">
+            <li>
+              <router-link
+                to="/illustrations-digital"
+                @click="scrollClose"
+                :class="{ 'is-active': subIsActive('/illustrations-digital') }"
+                >Digital</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                to="/illustrations-physical"
+                @click="scrollClose"
+                :class="{ 'is-active': subIsActive('/illustrations-physical') }"
+                >Physical</router-link
+              >
+            </li>
+          </ul>
           <router-link
-            to="/prints"
+            v-if="'comics' in metadata"
+            to="/comics"
             @click="scrollClose"
-            :class="{ 'is-active': subIsActive('/prints') }"
-            >Prints</router-link
-          >
-          <router-link
-            to="/digital"
-            @click="scrollClose"
-            :class="{ 'is-active': subIsActive('/digital') }"
-            >Digital</router-link
-          >
-          <router-link
-            to="/analogue"
-            @click="scrollClose"
-            :class="{ 'is-active': subIsActive('/analogue') }"
-            >Analogue</router-link
-          >
-          <router-link
-            to="/the-comic"
-            @click="scrollClose"
-            :class="{ 'is-active': subIsActive('/the-comic') }"
-            >The Comic</router-link
+            :class="{ 'is-active': subIsActive('/comics') }"
+            >Comics</router-link
           >
         </div>
         <div id="links-bottom" class="links">
-          <a href="https://weirdfoodstudio.etsy.com"
-            ><font-awesome-icon icon="shopping-bag"></font-awesome-icon> Shop</a
-          >
-          <router-link to="/about" @click="scrollClose">About Me</router-link>
+          <a href="https://weirdfoodstudio.etsy.com">Shop</a>
+          <router-link to="/contact" @click="scrollClose">Contact</router-link>
           <router-link to="/" @click="scrollClose">Home</router-link>
         </div>
       </div>
@@ -69,7 +69,7 @@ export default {
     mobile: Boolean,
   },
   computed: {
-    ...mapState(["menu_expanded"]),
+    ...mapState(["menu_expanded", "metadata"]),
     navbarStyle() {
       if (this.mobile === true) {
         if (this.menu_expanded === true) {
@@ -137,6 +137,23 @@ export default {
 </script>
 
 <style scoped>
+#illustrations_section {
+  margin: 0;
+  padding: 15px 0px 0px 0px;
+}
+
+#illustration_types {
+  margin: 0;
+  font-size: 80%;
+  list-style-type: none;
+  padding: 0 0 0 20px;
+}
+
+li {
+  padding: 0;
+  margin: 15px 0;
+}
+
 #nav {
   display: flex;
   flex-direction: column;
