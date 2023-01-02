@@ -2,8 +2,58 @@
   <div>
     <div v-if="!zoomed" class="detail-wrapper">
       <div class="detail">
-        <div class="image" @click="toggle_zoomed">
-          <img v-bind:src="getImgUrl(img_obj)" v-bind:alt="img_obj.name" />
+        <div id="image_wrapper" class="image">
+          <div
+            v-if="typeof prev_img_id === 'undefined'"
+            class="nav_arrow_container"
+          >
+            <div>
+              <font-awesome-icon
+                icon="arrow-circle-left"
+                v-bind:style="inactiveLinkStyle"
+              ></font-awesome-icon>
+            </div>
+          </div>
+          <div v-else class="icon_button nav_arrow_container">
+            <router-link
+              v-bind:to="{
+                name: 'Detail',
+                params: { id: prev_img_id, category: category },
+              }"
+              @click="scrollToTop"
+            >
+              <font-awesome-icon icon="arrow-circle-left"></font-awesome-icon>
+            </router-link>
+          </div>
+          <div id="unzoomed_image">
+            <img
+              v-bind:src="getImgUrl(img_obj)"
+              v-bind:alt="img_obj.name"
+              @click="toggle_zoomed"
+            />
+          </div>
+          <div
+            v-if="typeof next_img_id === 'undefined'"
+            class="nav_arrow_container"
+          >
+            <div>
+              <font-awesome-icon
+                icon="arrow-circle-right"
+                v-bind:style="inactiveLinkStyle"
+              ></font-awesome-icon>
+            </div>
+          </div>
+          <div v-else class="icon_button nav_arrow_container">
+            <router-link
+              v-bind:to="{
+                name: 'Detail',
+                params: { id: next_img_id, category: category },
+              }"
+              @click="scrollToTop"
+            >
+              <font-awesome-icon icon="arrow-circle-right"></font-awesome-icon>
+            </router-link>
+          </div>
         </div>
 
         <div id="right_sidebar">
@@ -17,50 +67,10 @@
           </div>
 
           <div class="gallery_nav">
-            <div id="nav_flex">
-              <div v-if="typeof prev_img_id === 'undefined'" class="nav_margin">
-                <font-awesome-icon
-                  icon="arrow-circle-left"
-                  style="opacity: 0.3"
-                ></font-awesome-icon>
-              </div>
-              <div v-else class="icon_button nav_margin">
-                <router-link
-                  v-bind:to="{
-                    name: 'Detail',
-                    params: { id: prev_img_id, category: category },
-                  }"
-                  @click="scrollToTop"
-                >
-                  <font-awesome-icon
-                    icon="arrow-circle-left"
-                  ></font-awesome-icon>
-                </router-link>
-              </div>
-              <div class="nav_margin">
-                <router-link v-bind:to="{ path: '/' + category }">
-                  Back to gallery
-                </router-link>
-              </div>
-              <div v-if="typeof next_img_id === 'undefined'">
-                <font-awesome-icon
-                  icon="arrow-circle-right"
-                  style="opacity: 0.3"
-                ></font-awesome-icon>
-              </div>
-              <div v-else class="icon_button">
-                <router-link
-                  v-bind:to="{
-                    name: 'Detail',
-                    params: { id: next_img_id, category: category },
-                  }"
-                  @click="scrollToTop"
-                >
-                  <font-awesome-icon
-                    icon="arrow-circle-right"
-                  ></font-awesome-icon>
-                </router-link>
-              </div>
+            <div>
+              <router-link v-bind:to="{ path: '/' + category }">
+                Back to gallery
+              </router-link>
             </div>
           </div>
         </div>
@@ -74,7 +84,7 @@
           v-if="typeof prev_img_id === 'undefined'"
           class="nav_arrow_container"
         >
-          <div class="nav_margin nav_zoomed">
+          <div class="nav_zoomed">
             <font-awesome-icon
               icon="arrow-circle-left"
               style="opacity: 0.3"
@@ -90,7 +100,7 @@
           @click="scrollToTop"
           class="nav_arrow_container"
         >
-          <div class="icon_button nav_margin nav_zoomed">
+          <div class="icon_button nav_zoomed">
             <font-awesome-icon icon="arrow-circle-left"></font-awesome-icon>
           </div>
         </router-link>
@@ -134,9 +144,10 @@ export default {
   props: {
     category: String,
     id: String,
+    mobile: Boolean,
   },
   computed: {
-    ...mapState(["id_metadata", "zoomed"]),
+    ...mapState(["id_metadata", "zoomed", "menu_expanded"]),
     img_obj() {
       return this.id_metadata[this.category][this.id];
     },
@@ -161,6 +172,17 @@ export default {
         return {
           display: "none",
           "background-image": "none",
+        };
+      }
+    },
+    inactiveLinkStyle() {
+      if (this.mobile && this.menu_expanded) {
+        return {
+          opacity: 1.0,
+        };
+      } else {
+        return {
+          opacity: 0.3,
         };
       }
     },
@@ -212,6 +234,16 @@ export default {
 </script>
 
 <style scoped>
+#unzoomed_image {
+  margin: 0 5px;
+}
+
+#image_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #fullpage_image,
 #fullpage_nav {
   position: absolute;
@@ -282,16 +314,12 @@ export default {
   flex-basis: 30%;
 }
 
-.nav_margin {
-  margin-right: 20px;
-}
 .detail {
   display: flex;
   flex-basis: 100%;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  margin-right: 20px;
   text-align: left;
   align-items: stretch;
 }
@@ -307,6 +335,7 @@ img {
 .image_info {
   font-size: 200%;
 }
+
 #right_sidebar {
   display: flex;
   flex-basis: 40%;
@@ -346,6 +375,10 @@ img {
   }
   #nav_flex_spacer {
     flex-basis: 0%;
+  }
+  #right_sidebar {
+    flex-basis: 100%;
+    padding: 0 20px;
   }
 }
 </style>

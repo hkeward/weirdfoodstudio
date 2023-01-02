@@ -5,8 +5,8 @@
         <div id="title_text">Weird Food Studio</div>
       </router-link>
     </div>
-    <div v-if="windowWidth <= smallScreenWidth" class="nav_holder">
-      <navbar :mobile="true" />
+    <div v-if="mobile" class="nav_holder">
+      <navbar :mobile="mobile" />
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "TitleBar",
-  props: ["windowWidth", "smallScreenWidth"],
+  props: ["mobile"],
   components: {
     Navbar,
   },

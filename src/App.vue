@@ -2,11 +2,12 @@
   <div id="main">
     <navbar v-if="windowWidth > smallScreenWidth" />
     <div id="content" v-bind:style="bodyMarginStyle">
-      <title-bar
+      <title-bar :mobile="mobile" />
+      <router-view
+        class="main_content"
         :windowWidth="windowWidth"
-        :smallScreenWidth="smallScreenWidth"
+        :mobile="mobile"
       />
-      <router-view class="main_content" :windowWidth="windowWidth" />
     </div>
   </div>
 </template>
@@ -33,6 +34,9 @@ export default {
       return {
         "padding-left": this.nav_width + 56 + "px",
       };
+    },
+    mobile() {
+      return this.windowWidth < this.smallScreenWidth;
     },
   },
   methods: {
