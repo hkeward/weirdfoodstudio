@@ -3,7 +3,7 @@
     <div v-if="!zoomed" class="detail-wrapper">
       <div class="detail">
         <div class="image" @click="toggle_zoomed">
-          <img v-bind:src="getImgUrl(img_obj)" />
+          <img v-bind:src="getImgUrl(img_obj)" v-bind:alt="img_obj.name" />
         </div>
 
         <div id="right_sidebar">

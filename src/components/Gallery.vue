@@ -15,7 +15,11 @@
           }"
           @click="scrollToTop"
         >
-          <img v-bind:src="getImgUrl(metadata[category][0])" />
+          <img
+            v-bind:src="getImgUrl(metadata[category][0])"
+            v-bind:alt="metadata[category][0].name"
+            v-bind:title="metadata[category][0].name"
+          />
         </router-link>
       </div>
       <div class="recent_images">
@@ -31,7 +35,11 @@
           }"
           @click="scrollToTop"
         >
-          <img v-bind:src="getImgUrl(img_obj)" />
+          <img
+            v-bind:src="getImgUrl(img_obj)"
+            v-bind:alt="img_obj.name"
+            v-bind:title="img_obj.name"
+          />
         </router-link>
       </div>
     </div>
