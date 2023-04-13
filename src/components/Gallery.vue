@@ -26,7 +26,6 @@
         <router-link
           class="img_link"
           v-for="img_obj in metadata[category]
-            .filter((img) => !img.id.includes('mock-wine-label'))
             .slice(1, 4)"
           v-bind:key="img_obj.file"
           v-bind:to="{
