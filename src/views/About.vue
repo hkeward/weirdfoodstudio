@@ -10,9 +10,6 @@
             v-bind:icon="['fab', 'patreon']"
           ></font-awesome-icon>
         </a>
-        <a href="https://weirdfoodstudio.etsy.com">
-          <font-awesome-icon v-bind:icon="['fab', 'etsy']"></font-awesome-icon>
-        </a>
       </div>
     </div>
     <div id="description">
@@ -61,11 +58,6 @@
         <li>
           <a href="https://patreon.com/weirdfoodstudio" class="social_link"
             >Patreon</a
-          >
-        </li>
-        <li>
-          <a href="https://weirdfoodstudio.etsy.com" class="social_link"
-            >Etsy</a
           >
         </li>
       </ul>
