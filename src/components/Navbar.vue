@@ -46,7 +46,6 @@
           >
         </div>
         <div id="links-bottom" class="links">
-          <a href="https://weirdfoodstudio.etsy.com">Shop</a>
           <router-link to="/contact" @click="scrollClose">Contact</router-link>
           <router-link to="/" @click="scrollClose">Home</router-link>
         </div>
