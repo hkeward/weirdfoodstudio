@@ -31,7 +31,7 @@ def list_files(service):
     return items
 
 
-def sort_files(files):
+def sort_format_files(files):
     def _get_path(file, path=None):
         parent_id = file.get("parents")
         if parent_id is None:
@@ -78,6 +78,7 @@ def sort_files(files):
                 "drive_id": file["id"],
                 "medium": medium,
                 "md5Checksum": file.get("md5Checksum", None),
+                "createdTime": file.get("createdTime"),
             }
 
             path = _get_path(file)
@@ -86,18 +87,12 @@ def sort_files(files):
             else:
                 files_formatted[path] = [file_obj]
 
-    # Set the first item in the Digital array to the file with ID breakfast-c2020
-    first_image_index = [
-        item
-        for item in files_formatted["illustrations-digital"]
-        if item["id"] == "breakfast-c2020"
-    ][0]
-    files_formatted["illustrations-digital"].insert(
-        0,
-        files_formatted["illustrations-digital"].pop(
-            files_formatted["illustrations-digital"].index(first_image_index)
-        ),
-    )
+    for category, items in files_formatted.items():
+        items_sorted_by_date = sorted(
+            items, key=lambda i: i["createdTime"], reverse=True
+        )
+        files_formatted[category] = items_sorted_by_date
+
     return files_formatted
 
 
@@ -155,11 +150,13 @@ def main(args):
     creds = get_creds(args.credentials)
     drive_service = build("drive", "v3", credentials=creds)
     files = list_files(drive_service)
-    sorted_files = sort_files(files)
+    sorted_formatted_files = sort_format_files(files)
 
     downloaded_checksums = load_previous_metadata(metadata_file)
-    get_files(sorted_files, asset_directory, drive_service, downloaded_checksums)
-    write_metadata(sorted_files, metadata_file)
+    get_files(
+        sorted_formatted_files, asset_directory, drive_service, downloaded_checksums
+    )
+    write_metadata(sorted_formatted_files, metadata_file)
 
 
 if __name__ == "__main__":
